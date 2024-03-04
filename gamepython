@@ -62,3 +62,91 @@ ban = False
 huong_gio = random.randint(0,1)
 luc_gio = random.randint(0,50)
 wind_title = pygame.font.SysFont("Arial",30)
+wind_text = pygame.font.SysFont("Arial",30)
+dan_dichuyen = False
+no = False
+x = 180
+y = 700
+dem = 0
+hp_dich = 200
+xoay = False
+x_co = 900
+y_co = 640
+class Linh:
+    def __init__(self, x, y, speed, right, num):
+        self.x = x
+        self.y = y
+        self.min_x = 800
+        self.max_x = 1120
+        self.speed = speed
+        self.right = right
+        self.num = num
+        self.animation = [pygame.image.load("project_resources/linh/1.png"),
+                          pygame.image.load("project_resources/linh/2.png"),
+                          pygame.image.load("project_resources/linh/3.png"),
+                          pygame.image.load("project_resources/linh/4.png"),
+                          pygame.image.load("project_resources/linh/5.png"),]
+        size = (70, 40)
+        for i in range (0, 5):
+            self.animation[i] = pygame.transform.scale(self.animation[i], size)
+            if right == False:
+                self.animation[i] = pygame.transform.flip(self.animation[i], True, False)
+    def Run(self):
+        if self.right:
+            self.x += self.speed
+            if self.x >= self.max_x:
+                self.right = False
+                for i in range (0, 5):
+                    self.animation[i] = pygame.transform.flip(self.animation[i], True, False)
+        else:
+            self.x -= self.speed
+            if self.x <= self.min_x:
+                self.right = True
+                for i in range(0, 5):
+                    self.animation[i] = pygame.transform.flip(self.animation[i], True, False)
+        self.num += 1
+        stt = self.num//5
+        if self.num == 25:
+            self.num = 0
+            stt = 0
+        screen.blit(self.animation[stt], (self.x, self.y))
+#linh = Linh(850, 700, 1, True, 0)
+while True:
+    clock.tick(60)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                h_change = 0.2
+                xoay = True
+            if event.key == pygame.K_DOWN:
+                h_change = -0.2
+                xoay = True
+            if event.key == pygame.K_SPACE and dan_dichuyen == False:
+                load = True
+                luc_ban = 0
+        if event.type == pygame.KEYUP:
+            h_change = 0
+            luc_change = 0
+            load = False
+            xoay = False
+            if event.key == pygame.K_SPACE and dan_dichuyen == False:
+                ban = True
+                t = 0
+                dan_dichuyen = True
+                no = False
+                dem = 0
+                if tt == 1:
+                    nhacban.play()
+    huong += h_change
+    #print(huong)
+    if huong > 54:
+        huong = 54
+    if huong < 0:
+        huong = 0
+    if tt == 0:
+        mousePos = pygame.mouse.get_pos()
+        play_rect = pygame.Rect(100,250,396,197)
+        exit_rect = pygame.Rect(100,450,396,197)
