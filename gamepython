@@ -230,3 +230,56 @@ screen.blit(bg_1_img,(0,0))
             y = y_0 - v_0*math.sin(math.radians(huong)) + 9.8*t*t/2
             screen.blit (dan_img,(x,y))
             t += 0.1
+if y > 900 or x > 1600:
+                ban = False
+                dan_dichuyen = False
+                huong_gio = random.randint(0, 1)
+                luc_gio = random.randint(0, 50)
+                if x > 1600:
+                    huong_gio = random.randint(0, 1)
+                    luc_gio = random.randint(0, 50)
+        wind_title_render = wind_title.render("Wind",True,(0,0,0))
+        wind_render = wind_text.render(str(luc_gio),True,(0,0,0))
+        hp_rect = pygame.transform.scale(hp,(hp_dich,20))
+        screen.blit(hp_rect,(870,600))
+        if huong_gio == 0:
+            chieu_gio = pygame.transform.flip(muiten,True,False)
+        else:
+            chieu_gio = muiten
+        screen.blit(wind_title_render,(750,10))
+        screen.blit(chieu_gio,(710,45))
+        screen.blit(wind_render,(810,57))
+        if no and dem < 20:
+            dem += 1
+            tt_no = dem // 5
+            vu_no = no_animation[tt_no]
+            screen.blit(vu_no,(x - 50, y - 100))
+            if dem == 1:
+                nhacno.play()
+        if dem == 20 and dan_dichuyen == False:
+            x = 180
+            y = 700
+            huong_gio = random.randint(0,1)
+            luc_gio = random.randint(0,50)
+    else:
+        screen.blit(bg_2_img, (0, 0))
+        screen.blit(nong_xoay, nong_xoay_rect)
+        screen.blit(chan_img, (145, 695))
+        screen.blit(himlam_img, (900, 640))
+        screen.blit(decart_img, (1460, 835))
+        screen.blit(back_img, (1500, 50))
+        y_co -= 2
+        if y_co < 500:
+            y_co = 500
+        dem += 1
+        if dem > 20:
+            dem = 0
+        i = dem // 5
+        screen.blit(co_animation[i],(x_co,y_co))
+        mousePos = pygame.mouse.get_pos()
+        Back_rect = pygame.Rect(1500, 50, 70, 50)
+        if Back_rect.collidepoint(mousePos):
+            mouse = pygame.mouse.get_pressed()
+            if mouse[0]:
+                tt = 0
+    pygame.display.update()
