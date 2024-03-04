@@ -1,0 +1,64 @@
+import pygame
+import sys
+import random
+import math
+pygame.init()
+screen = pygame.display.set_mode((1600,900))
+pygame.display.set_caption("Trận Him Lam")
+icon_img = pygame.image.load("project_resources/icon.png")
+pygame.display.set_icon(icon_img)
+bg_1_img = pygame.image.load("project_resources/bg1.jpg")
+bg_2_img = pygame.image.load("project_resources/bg2.jpg")
+play_1_img = pygame.image.load("project_resources/play1.png")
+exit_1_img = pygame.image.load("project_resources/exit1.png")
+play_2_img = pygame.image.load("project_resources/play2.png")
+exit_2_img = pygame.image.load("project_resources/exit2.png")
+chan_img = pygame.image.load("project_resources/ChanPhao.png")
+chan_img = pygame.transform.scale(chan_img,(80,40))
+nong_img = pygame.image.load("project_resources/NongPhao.png")
+nong_img = pygame.transform.scale(nong_img,(120,40))
+himlam_img = pygame.image.load("project_resources/HimLam.png")
+himlam_img = pygame.transform.scale(himlam_img,(100,90))
+decart_img = pygame.image.load("project_resources/HamDecart.png")
+decart_img = pygame.transform.scale(decart_img,(150,60))
+back_img = pygame.image.load("project_resources/Back.png")
+back_img = pygame.transform.scale(back_img,(70,50))
+dan_img = pygame.image.load("project_resources/dan.png")
+dan_img = pygame.transform.scale(dan_img,(20,20))
+khung_luc = pygame.image.load("project_resources/luc.jpg")
+khung_luc = pygame.transform.scale(khung_luc,(500,50))
+luc = pygame.image.load("project_resources/load.png")
+luc = pygame.transform.scale(luc,(500,50))
+muiten = pygame.image.load("project_resources/mui-ten.png")
+muiten = pygame.transform.scale(muiten,(100,60))
+no_animation =  [pygame.image.load("project_resources/No/1.png"),
+                 pygame.image.load("project_resources/No/2.png"),
+                 pygame.image.load("project_resources/No/3.png"),
+                 pygame.image.load("project_resources/No/4.png"),
+                 pygame.image.load("project_resources/No/5.png")]
+hp = pygame.image.load("project_resources/hp.png")
+hp = pygame.transform.scale(hp,(200,20))
+nhacnen = pygame.mixer.Sound("project_resources/NhacNen.mp3")
+nhacno = pygame.mixer.Sound("project_resources/TiengNo.mp3")
+nhacban = pygame.mixer.Sound("project_resources/nembom.mp3")
+nhacxoay = pygame.mixer.Sound("project_resources/tick.mp3")
+co_animation = [pygame.image.load("project_resources/CoVN/1.png"),
+                pygame.image.load("project_resources/CoVN/2.png"),
+                pygame.image.load("project_resources/CoVN/3.png"),
+                pygame.image.load("project_resources/CoVN/4.png"),
+                pygame.image.load("project_resources/CoVN/5.png")]
+nhacwin = pygame.mixer.Sound("project_resources/QuocCa.mp3")
+nhacnen.play(-1)
+nhacnen.set_volume(10)
+tt = 0
+huong = 0
+h_change = 0
+List_Linh = []
+clock = pygame.time.Clock()
+luc_ban = 0
+luc_change = 0
+load = False
+ban = False
+huong_gio = random.randint(0,1)
+luc_gio = random.randint(0,50)
+wind_title = pygame.font.SysFont("Arial",30)
